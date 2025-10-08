@@ -35,7 +35,6 @@ public class Principal {
         cliente1.aplicarRecursos(100);
 
         // --- Geração dos Relatórios ---
-        System.out.println("\n### Relatórios Finais ###");
         System.out.println(cliente1.gerarRelatorio());
         System.out.println(cliente2.gerarRelatorio());
     }

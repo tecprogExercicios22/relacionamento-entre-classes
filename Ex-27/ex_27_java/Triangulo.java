@@ -1,41 +1,62 @@
-/**
- * Representa um triângulo no plano cartesiano.
- * Esta classe é COMPOSTA por três objetos da classe Ponto.
- */
-public class Triangulo {
-    // Os vértices são partes integrantes do triângulo.
-    // Eles são criados e gerenciados pela classe Triangulo.
-    private Ponto verticeA;
-    private Ponto verticeB;
-    private Ponto verticeC;
-
-    /**
-     * Construtor para criar um Triangulo a partir das coordenadas de seus vértices.
-     * Os objetos Ponto são instanciados aqui, demonstrando a composição.
-     * @param xA Coordenada X do vértice A.
-     * @param yA Coordenada Y do vértice A.
-     * @param xB Coordenada X do vértice B.
-     * @param yB Coordenada Y do vértice B.
-     * @param xC Coordenada X do vértice C.
-     * @param yC Coordenada Y do vértice C.
-     */
-    public Triangulo(double xA, double yA, double xB, double yB, double xC, double yC) {
-        this.verticeA = new Ponto(xA, yA);
-        this.verticeB = new Ponto(xB, yB);
-        this.verticeC = new Ponto(xC, yC);
+class Triangulo {
+    private Ponto vertice1;
+    private Ponto vertice2;
+    private Ponto vertice3;
+    
+    // Construtor
+    public Triangulo(Ponto v1, Ponto v2, Ponto v3) {
+        this.vertice1 = v1;
+        this.vertice2 = v2;
+        this.vertice3 = v3;
     }
 
-    /**
-     * Calcula o perímetro do triângulo.
-     * O perímetro é a soma das distâncias entre seus vértices (comprimento dos lados).
-     * @return O valor do perímetro.
-     */
-    public double calcularPerimetro() {
-        // Reusa o método distanciaAte da classe Ponto
-        double ladoAB = verticeA.distanciaAte(verticeB);
-        double ladoBC = verticeB.distanciaAte(verticeC);
-        double ladoCA = verticeC.distanciaAte(verticeA);
+    public void setVertice1(double x, double y){
+        vertice1.setPonto(x,y);
+    }
+    public void setVertice2(double x, double y){
+        vertice2.setPonto(x,y);
+    }
+    public void setVertice3(double x, double y){
+        vertice3.setPonto(x,y);
+    }
 
-        return ladoAB + ladoBC + ladoCA;
+    public Ponto getPVertice1() {
+        return vertice1;
+    }
+
+    public Ponto getPVertice2() {
+        return vertice2;
+    }
+
+    public Ponto getPVertice3() {
+        return vertice3;
+    }
+
+    public boolean testeTriangulo() {
+        if (vertice1.getX() == vertice2.getX() && vertice1.getX() == vertice3.getX())
+            return false;
+        if (vertice1.getY() == vertice2.getY() && vertice1.getY() == vertice3.getY())
+            return false;
+        return true;
+    }
+
+    public double calcDist(Ponto p1, Ponto p2) {
+        return Math.sqrt( (p1.getX() - p2.getX()) * (p1.getX() - p2.getX()) + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY()));
+    }
+
+
+    public void imprimirPerimetro() {
+        float perimetro = 0;
+
+        if (!testeTriangulo()) {
+            System.out.println("Os vértices não formam um triangulo, pois são colineares.\n");
+            return;
+        }
+
+        perimetro += calcDist(vertice1, vertice2);
+        perimetro += calcDist(vertice2, vertice3);
+        perimetro += calcDist(vertice1, vertice3);
+
+        System.out.println("O perimetro do triangulo é " + perimetro);
     }
 }

@@ -1,57 +1,42 @@
-import java.util.InputMismatchException;
-import java.util.Locale;
 import java.util.Scanner;
 
-/**
- * Programa principal que interage com o usuário para calcular o perímetro de um triângulo.
- */
 public class Principal {
 
+    private Triangulo triang = new Triangulo(new Ponto(0,0),new Ponto(0,0),new Ponto(0,0));
+
+    public void exec() {
+        Scanner sc = new Scanner(System.in);
+        float x = 0, y = 0;
+
+        System.out.println("Criando um triângulo...");
+        System.out.print("Digite a coordenada do primeiro vértice no formato (x.x,y.y): ");
+        String entrada = sc.nextLine();
+        float[] v1 = parseCoordenada(entrada);
+        triang.setVertice1(v1[0], v1[1]);
+
+        System.out.print("Digite a coordenada do segundo vértice no formato (x.x,y.y): ");
+        entrada = sc.nextLine();
+        float[] v2 = parseCoordenada(entrada);
+        triang.setVertice2(v2[0], v2[1]);
+
+        System.out.print("Digite a coordenada do terceiro vértice no formato (x.x,y.y): ");
+        entrada = sc.nextLine();
+        float[] v3 = parseCoordenada(entrada);
+        triang.setVertice3(v3[0], v3[1]);
+
+        triang.imprimirPerimetro();
+    }
+
+    // Função auxiliar para converter "(x,y)" em float[]
+    private float[] parseCoordenada(String s) {
+        s = s.replace("(", "").replace(")", "");
+        String[] partes = s.split(",");
+        float x = Float.parseFloat(partes[0].trim());
+        float y = Float.parseFloat(partes[1].trim());
+        return new float[]{x, y};
+    }
+
     public static void main(String[] args) {
-        // Configura o Locale para usar ponto (.) como separador decimal
-        Locale.setDefault(Locale.US);
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("--- Calculadora de Perímetro de Triângulo ---");
-        System.out.println("Por favor, insira as coordenadas dos três vértices.");
-
-        try {
-            // Coleta das coordenadas do Vértice A
-            System.out.println("\n--- Vértice A ---");
-            System.out.print("Digite a coordenada X de A: ");
-            double xA = scanner.nextDouble();
-            System.out.print("Digite a coordenada Y de A: ");
-            double yA = scanner.nextDouble();
-
-            // Coleta das coordenadas do Vértice B
-            System.out.println("\n--- Vértice B ---");
-            System.out.print("Digite a coordenada X de B: ");
-            double xB = scanner.nextDouble();
-            System.out.print("Digite a coordenada Y de B: ");
-            double yB = scanner.nextDouble();
-
-            // Coleta das coordenadas do Vértice C
-            System.out.println("\n--- Vértice C ---");
-            System.out.print("Digite a coordenada X de C: ");
-            double xC = scanner.nextDouble();
-            System.out.print("Digite a coordenada Y de C: ");
-            double yC = scanner.nextDouble();
-
-            // Cria o objeto Triangulo (que por sua vez cria seus Pontos)
-            Triangulo meuTriangulo = new Triangulo(xA, yA, xB, yB, xC, yC);
-
-            // Calcula o perímetro
-            double perimetro = meuTriangulo.calcularPerimetro();
-
-            // Imprime o resultado formatado
-            System.out.println("\n-------------------------------------------");
-            System.out.printf("O perímetro do triângulo é: %.2f\n", perimetro);
-            System.out.println("-------------------------------------------");
-
-        } catch (InputMismatchException e) {
-            System.err.println("Erro: Por favor, insira apenas números válidos. Use ponto (.) para decimais.");
-        } finally {
-            scanner.close(); // Fecha o scanner para liberar recursos
-        }
+        new Principal().exec();
     }
 }

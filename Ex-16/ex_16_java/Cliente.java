@@ -3,7 +3,7 @@ public class Cliente {
     private String cpf;
     // Atributo do link para a associação unidirecional com Conta
     private Conta[] contas;
-    private int indiceContas; // Para controlar o número de contas adicionadas
+    private int indiceContas; 
 
     /**
      * Construtora para iniciar os atributos do cliente.
