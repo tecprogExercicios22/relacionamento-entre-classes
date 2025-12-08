@@ -32,6 +32,7 @@ Este repositório contém os seguintes arquivos:
 - **Exercício 22:** Criar um programa de compras com as classes `Item`, `CarrinhoDeCompras` e `Principal`.
 - **Exercício 23:** Criar um programa de matrícula de alunos com as classes `Aluno`, `Turma` e `Controle`.
 - **Exercício 24:** Criar um sistema de calculadora simples.
+- **Exercício 25:** Aprimorar o sistema de calculadora através de uma classe principal "Calculadora".
 - **Exercício 26:** Criar as classes `Familia` e `Pessoa`, e implementar uma relação de agregação entre elas.
 - **Exercício 27:** Criar um sistema de coordenadas que calcula o perímetro de um triângulo.
 - **Exercício 28:** Alterar a relação do Exercício 27 para uma agregação.
