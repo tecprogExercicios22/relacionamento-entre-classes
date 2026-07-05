@@ -1,0 +1,26 @@
+public class Ponto {
+    private float x;
+    private float y;
+
+    public Ponto(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Ponto() {
+        this(0.0f, 0.0f);
+    }
+
+    public void setPonto(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+}
